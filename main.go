@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	dsn := "root:secret@tcp(127.0.0.1:3307)/Restaurant?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:secret@tcp(127.0.0.1:3307)/Restaurants?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
@@ -23,15 +23,15 @@ func main() {
 		res := v1.Group("/res")
 		{
 			//Edit restaurants
-			res.PUT("/:id", editResbyId(db))
+			//res.PUT("/:id", editResbyId(db))
 			//Create restaurants
 			res.POST("", todotrpt.HandleCreateItem(db))
 			//List restaurants
-			res.GET("", listRes(db))
+			//res.GET("", listRes(db))
 			//List restaurants by ID
-			res.GET("/:id", listResById(db))
+			//res.GET("/:id", listResById(db))
 			//Delete restaurants by ID
-			res.DELETE("/:id", deleteRes(db))
+			//res.DELETE("/:id", deleteRes(db))
 		}
 	}
 	router.Run()
