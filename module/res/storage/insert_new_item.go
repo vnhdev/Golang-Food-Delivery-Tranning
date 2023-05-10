@@ -5,7 +5,7 @@ import (
 	"context"
 )
 
-func (s *mysqlStorage) CreateRes(ctx context.Context, data *model.Restaurant) error {
+func (s *mysqlStorage) CreateRes(ctx context.Context, data *model.RestaurantCreate) error {
 	if err := s.db.Create(data).Error; err != nil {
 		return err
 	}

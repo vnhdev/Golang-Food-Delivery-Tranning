@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Food_Delivery3/module/component"
 	todotrpt "Food_Delivery3/module/res/transport"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -10,11 +11,12 @@ import (
 )
 
 func main() {
-	dsn := "root:secret@tcp(127.0.0.1:3307)/Restaurants?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:secret@tcp(127.0.0.1:3307)/Restaurant?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
+	appCtx := component.NewAppContext(db)
 	if err != nil {
-		log.Fatal("Connot connect to DB Mysql:", err)
+		log.Fatal("Can't connect to DB Mysql:", err)
 	}
 	router := gin.Default()
 	fmt.Println(db)
@@ -25,7 +27,7 @@ func main() {
 			//Edit restaurants
 			//res.PUT("/:id", editResbyId(db))
 			//Create restaurants
-			res.POST("", todotrpt.HandleCreateItem(db))
+			res.POST("", todotrpt.HandleCreateItem(appCtx))
 			//List restaurants
 			//res.GET("", listRes(db))
 			//List restaurants by ID
