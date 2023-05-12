@@ -1,14 +1,16 @@
 package model
 
 import (
+	"Food_Delivery3/common"
 	"errors"
 	"strings"
 )
 
 type Restaurant struct {
-	Id   int    `json:"id" gorm:"column:id"`
-	Name string `json:"name" gorm:"column:name"`
-	Addr string `json:"addr" gorm:"column:addr"`
+	// ,inline o day la de cac tag trong common.SQLModel co cung cap voi cac tag cua Restaurant
+	common.SQLModel `json:",inline"`
+	Name            string `json:"name" gorm:"column:name"`
+	Addr            string `json:"addr" gorm:"column:addr"`
 }
 
 func (Restaurant) TableName() string {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Food_Delivery3/module/component"
+	"Food_Delivery3/component"
 	todotrpt "Food_Delivery3/module/res/transport"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -24,16 +24,11 @@ func main() {
 	{
 		res := v1.Group("/res")
 		{
-			//Edit restaurants
-			//res.PUT("/:id", editResbyId(db))
-			//Create restaurants
+			res.PUT("/:id", todotrpt.HandleUpdateRestaurant(appCtx))
 			res.POST("", todotrpt.HandleCreateItem(appCtx))
-			//List restaurants
-			//res.GET("", listRes(db))
-			//List restaurants by ID
-			//res.GET("/:id", listResById(db))
-			//Delete restaurants by ID
-			//res.DELETE("/:id", deleteRes(db))
+			res.GET("", todotrpt.HandleListItem(appCtx))
+			res.GET("/:id", todotrpt.HandleListItem(appCtx))
+			res.DELETE("/:id", todotrpt.HandleDeleteItem(appCtx))
 		}
 	}
 	router.Run()

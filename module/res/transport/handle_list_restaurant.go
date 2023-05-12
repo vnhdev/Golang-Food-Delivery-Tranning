@@ -8,28 +8,35 @@ import (
 	todostorage "Food_Delivery3/module/res/storage"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"strings"
 )
 
-func HandleCreateItem(appCtx component.AppContext) gin.HandlerFunc {
+func HandleListItem(appCtx component.AppContext) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var data model.RestaurantCreate
+		var filter model.Filter
 
-		if err := c.ShouldBind(&data); err != nil {
+		if err := c.ShouldBind(&filter); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		data.Name = strings.TrimSpace(data.Name)
+
+		var paging common.Paging
+
+		if err := c.ShouldBind(&paging); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
 
 		// Setup dependencies
 		storage := todostorage.NewMySQLStorage(appCtx.GetMainDBConnection())
-		biz := todobiz.NewCreateResItemBiz(storage)
+		biz := todobiz.NewListRestaurantBiz(storage)
 
-		if err := biz.CreateNewRestaurant(c.Request.Context(), &data); err != nil {
+		result, err := biz.ListRestaurant(c.Request.Context(), &filter, &paging)
+
+		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 
-		c.JSON(http.StatusOK, common.SimpleSuccessResponse(data))
+		c.JSON(http.StatusOK, common.SimpleSuccessResponse(result))
 	}
 }
