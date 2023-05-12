@@ -15,6 +15,5 @@ func (s *mysqlStorage) SoftDeleteData(ctx context.Context, id int) error {
 		}).Error; err != nil {
 		return err
 	}
-
 	return nil
 }

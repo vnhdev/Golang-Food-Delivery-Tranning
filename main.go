@@ -24,10 +24,10 @@ func main() {
 	{
 		res := v1.Group("/res")
 		{
-			res.PUT("/:id", todotrpt.HandleUpdateRestaurant(appCtx))
 			res.POST("", todotrpt.HandleCreateItem(appCtx))
 			res.GET("", todotrpt.HandleListItem(appCtx))
-			res.PATCH("/:id", todotrpt.HandleUpdateRestaurant(appCtx))
+			res.GET("/:id", todotrpt.HandleGetRestaurant(appCtx))
+			res.PUT("/:id", todotrpt.HandleUpdateRestaurant(appCtx))
 			res.DELETE("/:id", todotrpt.HandleDeleteItem(appCtx))
 		}
 	}
