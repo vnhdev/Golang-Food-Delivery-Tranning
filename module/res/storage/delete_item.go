@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"Food_Delivery3/common"
 	"Food_Delivery3/module/res/model"
 	"context"
 )
@@ -13,7 +14,7 @@ func (s *mysqlStorage) SoftDeleteData(ctx context.Context, id int) error {
 		Updates(map[string]interface{}{
 			"status": 0,
 		}).Error; err != nil {
-		return err
+		return common.ErrDB(err)
 	}
 	return nil
 }

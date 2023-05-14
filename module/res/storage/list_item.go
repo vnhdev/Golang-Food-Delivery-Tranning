@@ -28,11 +28,11 @@ func (s *mysqlStorage) ListDataByCondition(ctx context.Context,
 	}
 
 	if err := db.Count(&paging.Total).Error; err != nil {
-		return nil, err
+		return nil, common.ErrDB(err)
 	}
 
 	if err := db.Find(&result).Error; err != nil {
-		return nil, err
+		return nil, common.ErrDB(err)
 	}
 	return result, nil
 }

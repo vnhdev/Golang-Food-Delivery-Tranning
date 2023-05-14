@@ -19,7 +19,7 @@ func (s *mysqlStorage) FindRestaurantById(
 			//data not found
 			return nil, common.RecordNotFound
 		}
-		return nil, err
+		return nil, common.ErrDB(err)
 	}
 	return &data, nil
 }

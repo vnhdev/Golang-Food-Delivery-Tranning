@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"Food_Delivery3/common"
 	"Food_Delivery3/module/res/model"
 	"context"
 )
@@ -11,7 +12,7 @@ func (s *mysqlStorage) UpdateData(
 	data *model.RestaurantUpdate,
 ) error {
 	if err := s.db.Where("id = ?", id).Updates(&data).Error; err != nil {
-		return err
+		return common.ErrDB(err)
 	}
 	return nil
 }

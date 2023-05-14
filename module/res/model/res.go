@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+const EntityName = "Restaurant"
+
 type Restaurant struct {
 	// ,inline o day la de cac tag trong common.SQLModel co cung cap voi cac tag cua Restaurant
 	common.SQLModel `json:",inline"`

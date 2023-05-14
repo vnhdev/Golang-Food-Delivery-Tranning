@@ -1,6 +1,7 @@
 package transport
 
 import (
+	"Food_Delivery3/common"
 	"Food_Delivery3/component"
 	"Food_Delivery3/module/res/business"
 	storageres "Food_Delivery3/module/res/storage"
@@ -14,7 +15,7 @@ func HandleGetRestaurant(appCtx component.AppContext) gin.HandlerFunc {
 		id, err := strconv.Atoi(c.Param("id"))
 
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			c.JSON(http.StatusBadRequest, common.ErrInvalidRequest(err))
 			return
 		}
 		store := storageres.NewMySQLStorage(appCtx.GetMainDBConnection())
