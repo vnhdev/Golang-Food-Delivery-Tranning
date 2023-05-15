@@ -2,6 +2,7 @@ package main
 
 import (
 	"Food_Delivery3/component"
+	"Food_Delivery3/middleware"
 	todotrpt "Food_Delivery3/module/res/transport"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -19,6 +20,8 @@ func main() {
 		log.Fatal("Can't connect to DB Mysql:", err)
 	}
 	router := gin.Default()
+
+	router.Use(middleware.Recover(appCtx))
 	fmt.Println(db)
 	v1 := router.Group("/v1")
 	{
