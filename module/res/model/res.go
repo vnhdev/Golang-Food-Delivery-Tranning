@@ -13,7 +13,8 @@ type Restaurant struct {
 	common.SQLModel `json:",inline"`
 	Name            string        `json:"name" gorm:"column:name"`
 	Addr            string        `json:"addr" gorm:"column:addr"`
-	Logo            *common.Image `json:"logo" gorm:"logo;"`
+	Logo            *common.Image `json:"logo" gorm:"column:logo;"`
+	Cover           *common.Image `json:"cover" gorm:"column:cover;"`
 }
 
 func (Restaurant) TableName() string {
@@ -21,9 +22,9 @@ func (Restaurant) TableName() string {
 }
 
 type RestaurantUpdate struct {
-	Name *string       `json:"name" gorm:"column:name"`
-	Addr *string       `json:"addr" gorm:"column:addr"`
-	Logo *common.Image `json:"logo" gorm:"logo;"`
+	Name *string       `json:"name" gorm:"column:name;"`
+	Addr *string       `json:"addr" gorm:"column:addr;"`
+	Logo *common.Image `json:"logo" gorm:"column:logo;"`
 }
 
 func (RestaurantUpdate) TableName() string {
@@ -33,7 +34,7 @@ func (RestaurantUpdate) TableName() string {
 type RestaurantCreate struct {
 	Name string        `json:"name" gorm:"column:name"`
 	Addr string        `json:"addr" gorm:"column:addr"`
-	Logo *common.Image `json:"logo" gorm:"logo;"`
+	Logo *common.Image `json:"logo" gorm:"column:logo;"`
 }
 
 func (RestaurantCreate) TableName() string {
