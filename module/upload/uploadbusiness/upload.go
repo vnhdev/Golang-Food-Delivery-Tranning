@@ -1,10 +1,18 @@
-package business
+package uploadbusiness
 
 import (
 	"Food_Delivery3/common"
 	"Food_Delivery3/component/uploadprovider"
+	"Food_Delivery3/module/upload/uploadmodel"
 	"bytes"
 	"context"
+	"fmt"
+	"image"
+	"io"
+	"log"
+	"path/filepath"
+	"strings"
+	"time"
 )
 
 type CreateImageStorage interface {
@@ -22,13 +30,6 @@ func NewUploadBiz(provider uploadprovider.UploadProvider, imageStore CreateImage
 		itemStore: imageStore,
 	}
 }
-func (biz *uploadBiz) Upload(ctx context.Context, data []byte, folder, fileName string) (*common.Image, error) {
-	fileBytes := bytes.NewBuffer(data)
-
-	w, h, err := getI
-
-}
-
 func (biz *uploadBiz) Upload(ctx context.Context, data []byte, folder, fileName string) (*common.Image, error) {
 	fileBytes := bytes.NewBuffer(data)
 
@@ -55,11 +56,6 @@ func (biz *uploadBiz) Upload(ctx context.Context, data []byte, folder, fileName 
 	img.Height = h
 	img.CloudName = "s3"
 	img.Extension = fileExt
-
-	// Temporarily unused
-	//if err := biz.imageStore.CreateImage(ctx, img); err != nil {
-	//	return nil, uploadmodel.ErrCannotSaveFile(err)
-	//}
 
 	return img, nil
 }
