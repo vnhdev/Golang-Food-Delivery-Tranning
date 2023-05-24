@@ -1,8 +1,6 @@
 
 J
 module/res/model/filter.go,0/1/01517d40874a305577840b991235687e3aa5142f
-7
-main.go,0/6/0607f785dfa3c3861b3239f6723eb276d8056461
 E
 middleware/recover.go,9/7/9778be975b6bab7b6be464b1adbd0eda7709333f
 ?
@@ -18,12 +16,6 @@ $module/upload/uploadstorage/store.go,b/2/b27f0c14aa8a52ec8c4076d88e78ef446960d
 W
 'module/upload/uploadtransport/upload.go,7/3/73bea968d09ca3af4aaa957102fc68a8e0eb80fb
 C
-common/sql_model.go,d/a/da4d8239c14b064171c49135d0802e5695e086fd
-T
-$module/user/usermodel/user_create.go,f/f/ffcb816beea350030bcf69a37a0983d68b04fd57
-C
 common/app_error.go,c/e/cee76a2c6b2e2eda625663014497889abc222b8a
 W
 'component/uploadprovider/s3_provider.go,e/7/e7534821af5e40a870433acb5aaef58bf66b040b
-O
-module/user/userbiz/register.go,4/5/4591bc72ea311e1ac49b431438b6933fce56c37e

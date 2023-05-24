@@ -7,7 +7,7 @@ import (
 )
 
 type RegisterStorage interface {
-	FindUser(ctx context.Context, conditions map[string]interface{}, moreInfo ...string) (*usermodel.UserCreate, error)
+	FindUser(ctx context.Context, conditions map[string]interface{}, moreInfo ...string) (*usermodel.User, error)
 	CreateUser(ctx context.Context, data *usermodel.UserCreate) error
 }
 
@@ -33,7 +33,7 @@ func (business *registerBusiness) Register(ctx context.Context, data *usermodel.
 		return common.ErrEntityExisted(usermodel.EntityName, error(err))
 	}
 
-	salt := common.GemSalt(50)
+	salt := common.GenSalt(50)
 
 	data.Password = business.Hasher.Hash(data.Password + salt)
 	data.Salt = salt
@@ -43,5 +43,5 @@ func (business *registerBusiness) Register(ctx context.Context, data *usermodel.
 	if err := business.RegisterStorage.CreateUser(ctx, data); err != nil {
 		return common.ErrCannotCreateEntity(usermodel.EntityName, err)
 	}
-
+	return nil
 }

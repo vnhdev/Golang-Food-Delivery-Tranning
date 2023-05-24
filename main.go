@@ -4,6 +4,7 @@ import (
 	"Food_Delivery3/component"
 	"Food_Delivery3/middleware"
 	todotrpt "Food_Delivery3/module/res/transport"
+	"Food_Delivery3/module/user/transport"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
@@ -24,6 +25,8 @@ func main() {
 	router.Use(middleware.Recover(appCtx))
 	fmt.Println(db)
 	v1 := router.Group("/v1")
+
+	router.POST("/register", transport.Register(appCtx))
 	{
 		res := v1.Group("/res")
 		{
