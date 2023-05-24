@@ -31,9 +31,9 @@ func (UserLogin) TableName() string {
 	return User{}.TableName()
 }
 
-//	func (u *UserCreate) Mask(isAdmin bool) {
-//		u.GenUID(common.DbTypeUser)
-//	}
+func (u *UserCreate) Mask(isAdmin bool) {
+	u.GenUID(common.DbTypeUser)
+}
 
 var (
 	ErrUserNameOrPasswordInvalid = common.NewCustomError(errors.New("username or password invalid"),

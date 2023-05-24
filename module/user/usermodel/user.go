@@ -1,6 +1,8 @@
 package usermodel
 
-import "Food_Delivery3/common"
+import (
+	"Food_Delivery3/common"
+)
 
 type User struct {
 	common.SQLModel `json:",inline"`
@@ -26,10 +28,9 @@ func (u *User) GetRole() string {
 	return u.Role
 }
 
-//
-//func (u *User) Mask(isAdmin bool) {
-//	u.GenUID(common.DbTypeUser)
-//}
+func (u *User) Mask(isAdmin bool) {
+	u.GenUID(common.DbTypeUser)
+}
 
 func (User) TableName() string {
 	return "users"

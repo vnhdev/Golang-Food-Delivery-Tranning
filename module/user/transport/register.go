@@ -17,18 +17,19 @@ func Register(appCtx component.AppContext) gin.HandlerFunc {
 		var data usermodel.UserCreate
 
 		if err := c.ShouldBind(&data); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
+			panic(err)
 		}
 
 		store := userstorage.NewSQLStore(db)
 		md5 := hasher.NewMd5Hash()
-		repo := userbiz.NewRegisterBusiness(store, md5)
+		biz := userbiz.NewRegisterBusiness(store, md5)
 
-		if err := repo.Register(c.Request.Context(), &data); err != nil {
-			c.JSON(http.StatusBadRequest, err)
-			return
+		if err := biz.Register(c.Request.Context(), &data); err != nil {
+			panic(err)
 		}
-		c.JSON(http.StatusOK, common.SimpleSuccessResponse(data.Id))
+
+		data.Mask(false)
+
+		c.JSON(http.StatusOK, common.SimpleSuccessResponse(data.FakeId.String()))
 	}
 }
