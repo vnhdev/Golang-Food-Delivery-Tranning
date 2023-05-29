@@ -15,7 +15,13 @@ T
 $module/upload/uploadstorage/store.go,b/2/b27f0c14aa8a52ec8c4076d88e78ef446960df0c
 W
 'module/upload/uploadtransport/upload.go,7/3/73bea968d09ca3af4aaa957102fc68a8e0eb80fb
-C
-common/app_error.go,c/e/cee76a2c6b2e2eda625663014497889abc222b8a
 W
 'component/uploadprovider/s3_provider.go,e/7/e7534821af5e40a870433acb5aaef58bf66b040b
+Q
+!module/user/transport/register.go,5/8/582c3e34a9ed513bcf2cb584730fcf8572571387
+?
+common/const.go,7/3/7369b3cf23591b5d9d2c6e097648f5ffe2847842
+=
+common/uid.go,f/2/f27f63b4339ecff9e7722a6cd611946046a2d8b2
+C
+common/sql_model.go,d/a/da4d8239c14b064171c49135d0802e5695e086fd
